@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Игра FizzBuzz</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+		do {
+			let input = prompt("Введите число:");
+			if (input === null) {
+				console.log("Игра закончена");
+				break;
+			}
+
+			let number = Number(input);
+			if (Number.isNaN(number)) {
+				alert("Вы ввели некорректное число");
+				continue;
+			}
+
+			let outputString = "";
+			if (number % 3 == 0) outputString += "Fizz";
+			if (number % 5 == 0) outputString += "Buzz";
+			if (outputString.length == 0) outputString = number;
+
+			console.log(outputString);
+
+		} while (true);
+
+	</script>
+</body>
+
+</html>
