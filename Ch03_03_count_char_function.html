@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Функции подсчёта буквы в строке</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		// 1 stage - using one function
+
+		function countBs1(value) {
+			if (typeof value !== "string") {
+				throw "Неверный тип аргумента"
+			}
+			let charCount = 0;
+			for (let i = 0; i < value.length; i++) {
+				if (value[i] === "B") {
+					charCount++;
+				}
+			}
+			return charCount;
+		}
+		
+		console.log("Stage 1");
+		console.log(countBs1("Baobab")); // 1
+		console.log(countBs1("Big Baobab")); // 2
+
+		// 2 stage - using two function
+
+		function countChar(value, char) {
+			if (typeof value !== "string") {
+				throw "Неверный тип аргумента value"
+			}
+			if (typeof char !== "string") {
+				throw "Неверный тип аргумента char"
+			}
+			let charCount = 0;
+			for (let i = 0; i < value.length; i++) {
+				if (value[i] === char) {
+					charCount++;
+				}
+			}
+			return charCount;
+		}
+
+		function countBs(value) {
+			return countChar(value, "B");
+		}
+
+		console.log("Stage 2");
+		console.log(countChar("Baobab", "a")); // 2
+		console.log(countChar("Baobab", "p")); // 0
+		console.log(countBs("Baobab")); // 1
+		console.log(countBs("Big Baobab")); // 2
+
+	</script>
+</body>
+
+</html>

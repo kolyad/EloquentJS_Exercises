@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Функция нахождения минимального из двух чисел</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		function min(arg1, arg2) {
+			let value1 = parseFloat(arg1);
+			let value2 = parseFloat(arg2);
+			if (typeof value1 !== "number" || isNaN(value1) ||
+				typeof value2 !== "number" || isNaN(value2)) {
+				return undefined;
+			}
+			if (value1 < value2) {
+				return value1;
+			}
+			return value2;
+		}
+
+		console.log(min(5, 7)); // 5
+		console.log(min(10, 3)); // 3
+		console.log(min(7, 7)); // 7
+		console.log(min(3)); // undefined
+		console.log(min(undefined, 4)); // undefined
+		console.log(min(5, undefined)); // undefined
+		console.log(min(6, "A")); // undefined
+
+
+	</script>
+</body>
+
+</html>

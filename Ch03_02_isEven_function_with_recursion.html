@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Функция нахождения минимального из двух чисел</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		function isEven(value) {
+			switch (Math.abs(value)) {
+				case 0:
+					return true;
+					break;
+				case 1:
+					return false;
+					break;
+				default:
+					return isEven(value - 2);
+			}
+		}
+
+		console.log(isEven(0)); // true
+		console.log(isEven(1)); // false
+		console.log(isEven(5)); // false
+		console.log(isEven(50)); // true
+		console.log(isEven(75)); // false
+		console.log(isEven(-1)); // false
+
+	</script>
+</body>
+
+</html>
