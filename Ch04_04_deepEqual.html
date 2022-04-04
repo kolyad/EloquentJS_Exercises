@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		function deepEqual(first, second) {
+			if (typeof first !== 'object' || first === null || 
+				typeof second !== 'object' || second === null ){
+				throw "Аргументы должны быть объектами";
+			}
+			if (Array.isArray(first) !== Array.isArray(second)){
+				return false;
+			}
+			if (first == second) {
+				return true;
+			}
+			let firstKeys = Object.keys(first);
+			let secondKeys = Object.keys(second);
+			if(firstKeys.length !== secondKeys.length){
+				return false;
+			}
+			for (let i = 0; i < firstKeys.length; i++) {
+				let checkedKey = firstKeys[i];
+				let value1 = first[checkedKey];
+				let value2 = second[checkedKey];
+				if(value1 === undefined || value2 === undefined){
+					return false;
+				}
+				if(value1 === null || value2 === null){
+					return false;
+				}				
+				if(typeof value1 === 'object' && typeof value2 === 'object'){
+					if (!deepEqual(value1, value2)){
+						return false;
+					}
+					continue;
+				}
+				if(value1 != value2){
+					return false;
+				}
+			}
+			return true;
+		}
+
+		let testObject = {value: 5};
+		console.log(deepEqual(testObject, testObject));
+
+		console.log(deepEqual(
+			{value: 3, class: 5, rows: [1, null]}, 
+			{class: 5, value: 3, rows: [1, null]}));
+
+	</script>
+</body>
+
+</html>

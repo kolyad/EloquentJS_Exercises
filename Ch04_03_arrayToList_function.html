@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		function arrayToList(array) {
+			if (!Array.isArray(array)) {
+				throw "Аргумент функции должен быть массивом";
+			}
+			let result = null;
+			for (let i = array.length - 1; i >= 0; i--) {
+				result = { value: array[i], rest: result };
+			}
+			return result;
+		}
+
+		function listToArray(list) {
+			if (typeof list !== 'object') {
+				throw "Аргумент функции должен быть объектом";
+			}
+			let currentItem = list;
+			let result = [];
+			do {
+				let value = currentItem.value;
+				if (value !== undefined) {
+					result.push(value);
+				}
+				currentItem = currentItem.rest;
+			} while (currentItem != undefined || currentItem != null);
+			return result;
+		}
+
+		function prepend(value, list){
+			if (typeof list !== 'object') {
+				throw "Аргумент функции должен быть объектом";
+			}
+			list = {value, rest: list};
+			return list;
+		}
+
+		function nth(list, index){
+			if (typeof list !== 'object') {
+				throw "Аргумент функции должен быть объектом";
+			}
+			let array = listToArray(list);
+			return array[index];
+		}
+
+		let a = [5, 6, 4];
+		console.log("Original array:", a);
+		let l = arrayToList(a);	
+		console.log("Result (as list):", l);
+		console.log("Array back from list: ", listToArray(l));
+
+
+		let list = {
+			value: 3,
+			rest: {
+				value: 8,
+				rest: {
+					value: 2,
+					rest: {
+						value: 1,
+						rest: null
+					}
+				}
+			}
+		};
+
+		console.log("New list: ", list);
+		console.log("Array from new list: ", listToArray(list));
+
+		let list2 = prepend(10, list);
+		console.log("Prepend: ", list2);
+
+		console.log("0th element: ", nth(list2, 0));
+
+	</script>
+</body>
+
+</html>
