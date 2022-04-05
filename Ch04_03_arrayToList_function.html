@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title></title>
+	<title>Преобразование массива в иерархический объект и обратное преобразование</title>
 </head>
 
 <body>
@@ -36,15 +36,15 @@
 			return result;
 		}
 
-		function prepend(value, list){
+		function prepend(value, list) {
 			if (typeof list !== 'object') {
 				throw "Аргумент функции должен быть объектом";
 			}
-			list = {value, rest: list};
+			list = { value, rest: list };
 			return list;
 		}
 
-		function nth(list, index){
+		function nth(list, index) {
 			if (typeof list !== 'object') {
 				throw "Аргумент функции должен быть объектом";
 			}
@@ -54,7 +54,7 @@
 
 		let a = [5, 6, 4];
 		console.log("Original array:", a);
-		let l = arrayToList(a);	
+		let l = arrayToList(a);
 		console.log("Result (as list):", l);
 		console.log("Array back from list: ", listToArray(l));
 

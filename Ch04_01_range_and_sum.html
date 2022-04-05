@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
+	<title>Генерация массива по заданным границам чисел и шагу</title>
 </head>
+
 <body>
 	<script>
 		"use strict";
 
-		function range(start, end, step = 1){
+		function range(start, end, step = 1) {
 			let nextStep = start + step;
-			let interval = step < 0 
-				? {start: end, end: start} 
-				: {start, end}; 
-			let arrayLength = (nextStep > interval.start && nextStep <= interval.end) 
-				? Math.ceil((Math.abs(end - start) + 1)/Math.abs(step))
+			let interval = step < 0
+				? { start: end, end: start }
+				: { start, end };
+			let arrayLength = (nextStep > interval.start && nextStep <= interval.end)
+				? Math.ceil((Math.abs(end - start) + 1) / Math.abs(step))
 				: 0;
-			if(arrayLength <= 0){
+			if (arrayLength <= 0) {
 				return [];
 			}
 			const arr = new Array(arrayLength);
@@ -27,9 +29,9 @@
 			return arr;
 		}
 
-		function sum(array){
+		function sum(array) {
 			if (!Array.isArray(array)) {
-				throw "Аргумент функции должен быть массивом";				
+				throw "Аргумент функции должен быть массивом";
 			}
 			let result = 0;
 			for (let i = 0; i < array.length; i++) {
@@ -41,7 +43,8 @@
 		let a = range(10, 20, 2);
 		console.log(a);
 		console.log(sum(a));
-		
+
 	</script>
 </body>
+
 </html>

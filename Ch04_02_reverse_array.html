@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
+	<title>Инверсия массива</title>
 </head>
+
 <body>
 	<script>
 		"use strict";
 
-		function reverseArray(array){
+		function reverseArray(array) {
 			if (!Array.isArray(array)) {
-				throw "Аргумент функции должен быть массивом";				
+				throw "Аргумент функции должен быть массивом";
 			}
 			let newArray = new Array(array.length);
 			for (let index = array.length - 1, newArrayIndex = 0; index >= 0; index--, newArrayIndex++) {
 				newArray[newArrayIndex] = array[index];
-			}	
+			}
 			return newArray;
 		}
 
-		function reverseArrayInPlace(array){
+		function reverseArrayInPlace(array) {
 			if (!Array.isArray(array)) {
-				throw "Аргумент функции должен быть массивом";				
+				throw "Аргумент функции должен быть массивом";
 			}
 			let halfLength = Math.floor(array.length / 2);
 			for (let endIndex = array.length - 1, startIndex = 0; startIndex <= halfLength - 1; endIndex--, startIndex++) {
 				let swapValue = array[endIndex];
 				array[endIndex] = array[startIndex];
 				array[startIndex] = swapValue;
-			}	
+			}
 			return array;
 		}
 
@@ -36,7 +38,8 @@
 		console.log("Reversed 'in place' array:", reverseArrayInPlace(a));
 		console.log("Reversed array (by copy)", reverseArray(a));
 		console.log("Reversed original array", a);
-		
+
 	</script>
 </body>
+
 </html>
