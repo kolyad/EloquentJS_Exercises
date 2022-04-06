@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Цикл с помощью функции высшего порядка</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		function loop(startValue, condition, update, body) {
+			if (typeof startValue !== 'number' ||
+				typeof condition !== 'function' ||
+				typeof update !== 'function' ||
+				typeof body !== 'function') {
+				throw 'Неверные аргументы';
+			}
+			for (let i = startValue; condition(i); i = update(i)) {
+				body(i);
+			}
+		}
+
+		loop(1, n => n <= 10, n => n + 1, n => console.log(`loop ${n}`));
+
+	</script>
+</body>
+
+</html>

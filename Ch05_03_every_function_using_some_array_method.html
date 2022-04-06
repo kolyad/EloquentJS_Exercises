@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Функция every для массива с использованием метода some</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		function every(array, condition) {
+			if (!Array.isArray(array) ||
+				typeof condition !== 'function') {
+				throw 'Неверные аргументы';
+			}
+			return !array.some(n => !condition(n));
+		}
+
+		let array = [5, 5, 15];
+
+		console.log(every(array, n => n > 5));
+		console.log(every(array, n => n <= 15));
+
+	</script>
+</body>
+
+</html>

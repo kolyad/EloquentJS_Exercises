@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Свёртка массива массивов в одномерный массив</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		let array = [[1, 5, 3], [8, 2], [9, 0, 4, 1]];
+
+		let reducedArray = array.reduce((a, b) => a.concat(b));
+
+		console.log(reducedArray);
+
+	</script>
+</body>
+
+</html>

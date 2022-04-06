@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Функция every для массива</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		function every(array, condition) {
+			if (!Array.isArray(array) ||
+				typeof condition !== 'function') {
+				throw 'Неверные аргументы';
+			}
+			// Если массив не пустой, то считаем, что результат истина, 
+			// пока в цикле не доказано обратное
+			let result = array.length > 0;
+			for (let item of array) {
+				if (!condition(item)) {
+					result = false;
+					break;
+				}
+			}
+			return result;
+		}
+
+		let array = [4, 5, 10];
+
+		console.log(every(array, n => n < 11));
+
+	</script>
+</body>
+
+</html>
