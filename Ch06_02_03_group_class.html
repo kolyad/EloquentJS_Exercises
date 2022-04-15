@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Класс Group (аналог js-класса Set)</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		class Group {
+			constructor() {
+				this.set = new Array();
+			}
+
+			add(value) {
+				if (this.set.indexOf(value) == -1) {
+					this.set.push(value);
+				}
+			}
+
+			delete(value) {
+				let index = this.set.indexOf(value);
+				if (index != -1) {
+					this.set.splice(index, 1);
+				}
+			}
+
+			has(value) {
+				return this.set.indexOf(value) != -1;
+			}
+
+			get length() {
+				return this.set.length;
+			}
+
+			static from(collection) {
+				let result = new Group();
+				for (let item of collection) {
+					result.add(item);
+				}
+				return result;
+			}
+
+			[Symbol.iterator]() {
+				let index = -1;
+				let set = this.set;
+				return {
+					next: () => ({ value: set[++index], done: !(index in set) })
+				};
+			}
+		}
+
+		let set = new Group();
+
+		set.add(100);
+		set.add(100);
+		set.add("100");
+		console.log(set);
+
+		set.delete("100");
+		console.log(set);
+
+		set.add(20);
+		set.add(30);
+		console.log("Array has value 20:", set.has(20));
+		console.log("Array has value 50:", set.has(50));
+
+		let arr = [10, 10, 20, 20, 20, 30, 50];
+		let newSet = Group.from(arr);
+		console.log(newSet);
+
+		for (let item of newSet) {
+			console.log(item);
+		}
+
+		let emptySet = new Group();
+		for (let item of emptySet) {
+			console.log(item);
+		}		
+
+	</script>
+</body>
+
+</html>

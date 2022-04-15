@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Класс вектора Vec</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		class Vec {
+			constructor(x, y) {
+				this.x = x;
+				this.y = y;
+			}
+
+			plus(vector) {
+				return new Vec(this.x + vector.x, this.y + vector.y);
+			}
+
+			minus(vector) {
+				return new Vec(this.x - vector.x, this.y - vector.y);
+			}
+
+			get length() {
+				return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2)).toFixed(2);
+			}
+		}
+
+		let v = new Vec(100, 50);
+		let v1 = v.plus(new Vec(10, 10));
+		let v2 = v.minus(new Vec(20, 20));
+
+		console.log(v, v.length);
+		console.log(v1, v1.length);
+		console.log(v2, v2.length);
+
+	</script>
+</body>
+
+</html>

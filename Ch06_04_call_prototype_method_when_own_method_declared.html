@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Вызов метода прототипа, который был перекрыт в наследнике</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		class Test {
+			constructor() {
+				this.name = 'test';
+				this.hasOwnProperty = false;
+			}
+		}
+
+		let t = new Test();
+
+		console.log(t.hasOwnProperty);
+		console.log(Object.hasOwnProperty.call(t, "name"));
+
+	</script>
+</body>
+
+</html>
