@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Повторная попытка вычисления при возникновении исключения в функции</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		const box = {
+			locked: true,
+			unlock() { this.locked = false; },
+			lock() { this.locked = true; },
+			_content: [5, 5, 16],
+			get content() {
+				if (this.locked) throw new Error("Заперто");
+				return this._content;
+			}
+		};
+
+		function withBoxUnlocked(func) {
+			let stayUnlocked = !box.locked;
+			try {
+				if (box.locked) box.unlock();
+				func(box.content);
+			} finally {
+				if (!stayUnlocked) {
+					box.lock();
+				}
+			}
+		}
+
+		withBoxUnlocked((n) => console.log(n));
+
+		box.unlock();
+
+		withBoxUnlocked((n) => console.log(n));
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Повторная попытка вычисления при возникновении исключения в функции</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+		class MultiplicatorUnitFailure extends Error { }
+
+		function primitiveMultiply(value1, value2) {
+			do {
+				try {
+					let randomNumber = Math.random() * 100;
+					if (randomNumber >= 20) {
+						throw new MultiplicatorUnitFailure("Необработанная ошибка");
+					}
+					return value1 * value2;
+				} catch (e) {
+					if (e instanceof MultiplicatorUnitFailure) {
+						continue;
+					}
+					throw e;
+				}
+			} while (true);
+		}
+
+		console.log(primitiveMultiply(10, 20));
+
+	</script>
+</body>
+
+</html>
